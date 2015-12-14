@@ -56,7 +56,7 @@ app.use(function *(next) {
     var fileType = path.extname(part.filename);
     part.pipe(stream);
 
-    targetFile = path.join(filenamePrefix + fileType);
+    targetFile = filenamePrefix + fileType;
     images.push({
       originalFile: originalFile,
       targetFile: targetFile,
@@ -99,6 +99,7 @@ app.use(function *(next) {
 
       img.run(function(err, file) {
         if (err) { //ignore error file
+          console.log(err);
           return resolve('');
         }
 
@@ -109,3 +110,4 @@ app.use(function *(next) {
 });
 
 app.listen(3000);
+console.log('You can open http://localhost:3000');
